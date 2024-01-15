@@ -52,9 +52,26 @@ https://jsonplaceholder.typicode.com/posts
 /*
 От пользователя получаем Title и description и отправляем на endpoint
 https://jsonplaceholder.typicode.com/posts
-
 */
 
+  Future<(int, String)> createPost(
+      {required String title, required String body}) async {
+    try {
+      final response = await client.post(
+        Uri.parse(url),
+        headers: {'Content-type': 'application/json; charset=UTF-8'},
+        body: jsonEncode({'title': title, 'body': body, 'userId': 1}),
+      );
+
+      if (response.statusCode == 201) {
+        return (201, 'Post created successfully');
+      } else {
+        return (0, response.body);
+      }
+    } catch (e) {
+      return (0, e.toString());
+    }
+  }
 // Put (Update) post
 /*
 От пользователя получаем Title и description и изменяем пост

@@ -1,5 +1,6 @@
 import 'package:crud_api/models/post_model.dart';
 import 'package:crud_api/posts/cubit/posts_cubit.dart';
+import 'package:crud_api/posts/view/create_post_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +36,14 @@ class _PostsViewState extends State<PostsView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push<void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => const CreatePostView(),
+            ),
+          );
+        },
         child: const Icon(Icons.add),
       ),
     );
