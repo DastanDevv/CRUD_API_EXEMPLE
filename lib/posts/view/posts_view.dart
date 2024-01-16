@@ -66,6 +66,13 @@ class PostListWidget extends StatelessWidget {
             leading: Text(posts[index].id.toString()),
             title: Text(posts[index].title),
             subtitle: Text(posts[index].body),
+            onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) =>
+                    CreatePostView(post: posts[index]),
+              ),
+            ),
           ),
         );
       },
